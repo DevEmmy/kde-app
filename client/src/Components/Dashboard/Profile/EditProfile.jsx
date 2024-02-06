@@ -18,7 +18,6 @@ import DisableButton from "../../buttons/DisabledButton";
 import theme from "../../../application/utils/Theme";
 import { useLocation, useNavigate } from "react-router-dom";
 import services from "../../../ioc/services";
-import Loader from "../../Loader/Loader";
 import Return from "../../Navbar/Return";
 import { getUser } from "../../../infrastructure/api/user/userRequest";
 import {
@@ -153,7 +152,7 @@ const EditProfile = () => {
       city: values.city,
       zipCode: values.zipCode,
     };
-    if (isEdit) {
+    // if (isEdit) {
       setLoader(true);
       await services.api.userRequests
         .updateUserProfile(userDetails)
@@ -168,7 +167,7 @@ const EditProfile = () => {
           setLoader(false);
           setPopUp(true);
         });
-    }
+    // }
   };
 
   const handleChanging = (e) => {
@@ -227,7 +226,7 @@ const EditProfile = () => {
 
   return (
     <>
-      {loader && <Loader />}
+      {!loader && <loader />}
       {popUp && (
         <>
           <div

@@ -271,7 +271,7 @@ const LoggedUser = ({ logged }) => {
           Verification status: {verify}
         </Verify>
       }
-      </UserDetails>
+  </UserDetails>
 </Details>
       {/* <Bio>{data.about}</Bio> */}
       
@@ -363,3 +363,4 @@ export default LoggedUser;
 const Verify = styled.div`
   
 `
+
