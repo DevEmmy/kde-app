@@ -16,8 +16,11 @@ import '../Navbar/Navbar.css'
 import { Fragment } from 'react'
 import styled from 'styled-components'
 import Loader from '../Loader/Loader'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { toast } from 'react-toastify'
 
 const Deposit = () => {
+  const [account, setAccount] = useState(JSON.parse(localStorage.getItem("account")))
   const [activeNav, setActiveNav] = useState(false);
 
   const showMenu = () => {
@@ -86,6 +89,12 @@ const Deposit = () => {
     },
 
 ]
+
+const paid = ()=>{
+  setLoading(true)
+
+  setTimeout(()=>navigate("/dashboard/wallet"), 3000)
+}
 
 const otherNav = [
     {
@@ -193,12 +202,15 @@ const otherNav = [
         <p>4. Click on the <b>"I Have Made The Payment"</b> button below</p>
 
         <div className="account_details">
-          <p>Account Name: Olamide Williams</p>
+          <p>Account Name: {account.account_name}</p>
           <p>Bank Name: Fidelity Bank</p>
-          <p>Account Number: 73892382328 <FaCopy /></p>
+          <CopyToClipboard text={account?.account_number} onCopy={()=> toast("Copied!")}>
+          <p>Account Number: {account.account_number} <FaCopy /></p>
+          </CopyToClipboard>
+          
         </div>
 
-        <button className="btn" onClick={()=> setLoading(true)}>
+        <button className="btn" onClick={paid} >
           I Have Made The Payment
         </button>  
       </DepositPage>
